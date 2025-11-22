@@ -6,7 +6,7 @@ O **Biblioteca Universitária** é um sistema desenvolvido em **Java + Swing + J
 Este projeto foi criado como entrega acadêmica da disciplina de Ambiente de Dados.
 
 <p align="center">
-  <img src="assets/TelaInicial.png" alt="Tela inicial do sistema Biblioteca Universitária" width="900">
+  <img src="TelaInicialBiblioteca.png" alt="Tela inicial do sistema Biblioteca Universitária" width="900">
 </p>
 
 ---
