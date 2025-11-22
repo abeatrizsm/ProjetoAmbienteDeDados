@@ -2,8 +2,7 @@
 
 > Plataforma completa para gerenciamento de livros, alunos, empréstimos e devoluções no ambiente acadêmico.
 
-O **Biblioteca Universitária** é um sistema desenvolvido em **Java + Swing + JDBC + MySQL**, criado com o objetivo de oferecer uma solução simples e funcional para gestão de acervo, controle de usuários e administração de empréstimos.  
-Este projeto foi criado como entrega acadêmica da disciplina de Ambiente de Dados.
+O **Biblioteca Universitária** é um sistema desenvolvido em **Java + Swing + JDBC + MySQL**, criado com o objetivo de oferecer uma solução simples e funcional para gestão de acervo, controle de usuários e administração de empréstimos. Este projeto foi criado como entrega acadêmica da disciplina de Ambiente de Dados.
 
 <p align="center">
   <img src="TelaInicialBiblioteca.png" alt="Tela inicial do sistema Biblioteca Universitária" width="900">
