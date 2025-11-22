@@ -1,144 +1,135 @@
-# Biblioteca Universitária – Sistema de Gestão de Acervo e Empréstimos
+# Biblioteca Universitária – Sistema de Gerenciamento de Empréstimos e Acervo
 
-Sistema desktop desenvolvido em **Java (Swing + JDBC)** para gerenciamento de livros, usuários, aquisições e empréstimos.  
-Utiliza arquitetura em camadas, persistência via **MySQL** e interface construída com **JFrame + GUI Designer**.
+> Plataforma completa para gerenciamento de livros, alunos, empréstimos e devoluções no ambiente acadêmico.
 
-Projeto desenvolvido como entrega acadêmica da disciplina **Ambiente de Dados**.
+O **Biblioteca Universitária** é um sistema desenvolvido em **Java + Swing + JDBC + MySQL**, criado com o objetivo de oferecer uma solução simples e funcional para gestão de acervo, controle de usuários e administração de empréstimos.  
+Este projeto foi criado como entrega acadêmica da disciplina de Ambiente de Dados.
 
----
-
-## Arquitetura do Projeto
----
-BibliotecaUniversitaria/
-│
-├── src/
- ├── Assets/
- ├── Controller/
- ├── DAO/
- ├── DTO/
- ├── Globals/
- ├── Service/
- ├── View/
- └── Main/
----
+<p align="center">
+  <img src="assets/TelaInicial.png" alt="Tela inicial do sistema Biblioteca Universitária" width="900">
+</p>
 
 ---
 
 ## Tecnologias Utilizadas
+O sistema foi desenvolvido utilizando **Java + Swing** para a interface gráfica e **JDBC + MySQL** para o acesso ao banco de dados, seguindo uma arquitetura modular focada em organização e manutenção.
 
-### Linguagem e Interface
-- Java 21+
-- Swing (JFrame + GUI Designer)
-- AWT/Swing Components
+[![Java][Java-badge]][Java-url]
+[![Swing][Swing-badge]][Swing-url]
+[![JDBC][JDBC-badge]][JDBC-url]
+[![MySQL][MySQL.com]][MySQL-url]
 
-### Persistência e Banco
-- JDBC (MySQL Connector/J)
-- MySQL Workbench
-- MySQL Server
-
-### Arquitetura
-- Padrão MVC em camadas:
-  - **View** → interface gráfica
-  - **Controller** → coordenação das regras de negócio
-  - **Service** → validações e lógica central
-  - **DAO** → comunicação com o banco
-  - **DTO** → transporte de dados
-  - **Globals** → estado global do usuário logado
+### Bibliotecas principais:
+- **MySQL Connector/J** — Driver JDBC para conexão com MySQL  
+- **Java Swing** — Interface gráfica do sistema  
+- **JDBC** — Camada responsável pela comunicação com o banco de dados  
 
 ---
 
-## Funcionalidades
+## Pré-requisitos
 
-### Perfil Aluno
-- Visualizar livros disponíveis
-- Solicitar empréstimos
-- Realizar devoluções
-- Consultar histórico pessoal
-- Sugerir novas aquisições
+Antes de iniciar o projeto, certifique-se de que o seu ambiente atende aos seguintes requisitos:
 
-### Perfil Administrador
-- Cadastrar, alterar e excluir livros
-- Gerenciar empréstimos
-- Registrar novas aquisições
-- Acompanhar estatísticas e histórico geral
-- Gerenciar usuários
+- **Java JDK 17 ou superior**  
+  Verifique sua versão com:
+  ```
+  java -version
+  ```
 
----
+- **MySQL Server 8+**
 
-## Modelagem das Principais Tabelas
+- **MySQL Workbench**
 
-### usuario
-- id_usuario  
-- nome  
-- email  
-- senha  
-- tipo_usuario (aluno ou administrador)
+- **Git instalado** (recomendado para clonar o repositório; você também pode apenas baixar o aquivo em formato .zip do projeto e abrir no seu editor de código)
 
-### livro
-- id_livro  
-- titulo  
-- autor  
-- categoria  
-- ano  
-- quantidade  
-- quantidade_disponivel  
+- **IntelliJ IDEA / NetBeans / VSCode com Extensão Java**  
 
-### emprestimo
-- id_emprestimo  
-- id_usuario (FK)  
-- id_livro (FK)  
-- data_emprestimo  
-- data_devolucao  
-- status  
-
-### aquisicoes
-- id_aquisicao  
-- id_usuario (FK)  
-- titulo_solicitado  
-- justificativa  
-- data_solicitacao  
+> [!NOTE]  
+> Para que o projeto funcione corretamente, também é necessário criar o banco de dados. Esse procedimento será explicado na próxima seção.
 
 ---
 
-## Relacionamentos
+## Instalação e Execução do Projeto
 
-- Usuário solicita empréstimos de livros  
-- Administrador gerencia o acervo  
-- Livros podem possuir vários empréstimos  
-- Usuários podem solicitar aquisições  
-- Empréstimo relaciona **(usuário ↔ livro)**  
-- Aquisição relaciona **(usuário ↔ pedido)**  
+Siga os passos abaixo para instalar, configurar e executar o sistema Biblioteca Universitária no seu computador.
 
----
 
-## Execução do Sistema
+### 1. Clonar o repositório
 
-1. Configure a conexão no arquivo **ConexaoDAO**:
-private static final String URL = "jdbc:mysql://localhost:3306/BibliotecaUniversitaria";
-private static final String USER = "root";
-private static final String PASSWORD = "sua_senha";
+Abra o terminal (CMD, PowerShell ou Bash) e execute:
 
-2. Importe o **MySQL Connector/J** no IntelliJ (Project Structure → Dependencies).
+```
+git clone https://github.com/abeatrizsm/BibliotecaUniversitaria.git
+```
 
-3. Execute o arquivo **Main** para iniciar o sistema.
+Entre na pasta do projeto:
+
+```
+cd BibliotecaUniversitaria
+```
 
 ---
 
-## Arquitetura Interna
-**View → Controller → Service → DAO → MySQL**
+### 2. Configurar o Banco de Dados
 
-Fluxo completo de validação, regra de negócio e persistência.
+> Certifique-se de que o MySQL Server está instalado e ativo.
+
+1. Abra o **MySQL Workbench**
+2. Vá até a pasta `/database` do projeto
+3. Abra o arquivo `Script_Biblioteca.sql`
+4. Execute todo o script no icone de raio, isso criará todas as tabelas necessárias e inserirá dados iniciais
+
+---
+
+### 3. Configurar o Projeto Java
+
+1. Abra o projeto na sua IDE
+2. Certifique-se de que o driver **MySQL Connector/J** está disponível na pasta `lib/` ou no classpath
+3. Abra o arquivo responsável pela conexão,  `ConexaoDAO.java`, e configure seus dados:
+
+```java
+ conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BibliotecaUniversitaria", "root", "sua_senha");
+```
+---
+
+### 4. Executar o sistema
+
+Após configurar o banco e ajustar a conexão JDBC, execute o sistema:
+
+```
+Run > Run Project
+```
+
+Após isso o sistema deve abrir e funcionar normalmente. Os logins e senhas cadastrados estão na tabela "usuário". Rode o comando select * from usuarios para visualizar os dados mais facilmente e entre com qualquer cadastro para testar.
+
+> [!IMPORTANT]  
+> A diferenciação entre aluno e bibliotecário é feita pelo atributo **"tipo"** na tabela de usuários. Portanto, ao realizar o login, certifique-se de utilizar uma conta compatível com o perfil que deseja acessar.
 
 ---
 
 ## Autora
 
 Ana Beatriz Silveira Mendes  
-4º Semestre – Ciências da Computação  
-Universidade de Fortaleza (UNIFOR)
+4º Semestre – Ciência da Computação  
 
 ---
 
 ## Licença
 
-Projeto desenvolvido exclusivamente para fins acadêmicos.
+Projeto produzido exclusivamente para fins acadêmicos.
+
+---
+
+<!-- BADGES -->
+
+[Java-badge]: https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white
+[Java-url]: https://www.oracle.com/java/
+
+[Swing-badge]: https://img.shields.io/badge/Java%20Swing-5382a1?style=for-the-badge
+[Swing-url]: https://docs.oracle.com/javase/tutorial/uiswing/
+
+[JDBC-badge]: https://img.shields.io/badge/JDBC-007396?style=for-the-badge
+[JDBC-url]: https://docs.oracle.com/javase/8/docs/technotes/guides/jdbc/
+
+[MySQL.com]: https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white
+[MySQL-url]: https://www.mysql.com/
