@@ -18,11 +18,6 @@ O sistema foi desenvolvido utilizando **Java + Swing** para a interface gráfica
 [![JDBC][JDBC-badge]][JDBC-url]
 [![MySQL][MySQL.com]][MySQL-url]
 
-### Bibliotecas principais:
-- **MySQL Connector/J** — Driver JDBC para conexão com MySQL  
-- **Java Swing** — Interface gráfica do sistema  
-- **JDBC** — Camada responsável pela comunicação com o banco de dados  
-
 ---
 
 ## Pré-requisitos
